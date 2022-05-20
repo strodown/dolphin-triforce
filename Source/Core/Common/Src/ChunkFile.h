@@ -30,7 +30,7 @@
 #if _LIBCPP_VERSION
 #define IsTriviallyCopyable(T) std::is_trivially_copyable<T>::value
 #elif __GNUC__
-#define IsTriviallyCopyable(T) std::has_trivial_copy_constructor<T>::value
+#define IsTriviallyCopyable(T) std::is_trivially_copyable<T>::value
 #elif _MSC_VER >= 1800
 // work around bug
 #define IsTriviallyCopyable(T) (std::is_trivially_copyable<T>::value || std::is_pod<T>::value)
