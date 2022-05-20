@@ -89,67 +89,68 @@ IF (NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
 	return 0;
 	}"
 	MINIUPNPC_VERSION_PRE1_7)
-   ENDIF()
+ENDIF()
 
-   IF (NOT MINIUPNPC_VERSION_PRE1_7 AND NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
-	   set(CMAKE_REQUIRED_INCLUDES ${MINIUPNP_INCLUDE_DIR})
-	   set(CMAKE_REQUIRED_LIBRARIES ${MINIUPNP_LIBRARY})
-	   check_cxx_source_runs("
-	   #include <miniwget.h>
-	   #include <miniupnpc.h>
-	   #include <upnpcommands.h>
-	   #include <stdio.h>
-	   int main()
-	   {
-	   struct UPNPDev *devlist = NULL;
-	   int upnp_delay = 5000;
-	   const char *upnp_multicastif = NULL;
-	   const char *upnp_minissdpdsock = NULL;
-	   int upnp_sameport = 0;
-	   int upnp_ipv6 = 0;
-	   int upnp_error = 0;
-	   devlist = upnpDiscover(upnp_delay, upnp_multicastif, upnp_minissdpdsock, upnp_sameport);
+IF (NOT MINIUPNPC_VERSION_PRE1_7 AND NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
+	set(CMAKE_REQUIRED_INCLUDES ${MINIUPNP_INCLUDE_DIR})
+	set(CMAKE_REQUIRED_LIBRARIES ${MINIUPNP_LIBRARY})
+	check_cxx_source_runs("
+	#include <miniwget.h>
+	#include <miniupnpc.h>
+	#include <upnpcommands.h>
+	#include <stdio.h>
+	int main()
+	{
+	struct UPNPDev *devlist = NULL;
+	int upnp_delay = 5000;
+	const char *upnp_multicastif = NULL;
+	const char *upnp_minissdpdsock = NULL;
+	int upnp_sameport = 0;
+	int upnp_ipv6 = 0;
+	int upnp_error = 0;
+	devlist = upnpDiscover(upnp_delay, upnp_multicastif, upnp_minissdpdsock, upnp_sameport);
 
-	   return 0;
-	   }"
-	   MINIUPNPC_VERSION_PRE1_6)
+	return 0;
+	}"
+	MINIUPNPC_VERSION_PRE1_6)
 
-   ENDIF()
+ENDIF()
 
-   IF (NOT MINIUPNPC_VERSION_PRE1_6 AND NOT MINIUPNPC_VERSION_PRE1_7 AND NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
-	   set(CMAKE_REQUIRED_INCLUDES ${MINIUPNP_INCLUDE_DIR})
-	   set(CMAKE_REQUIRED_LIBRARIES ${MINIUPNP_LIBRARY})
-	   check_cxx_source_runs("
-	   #include <miniwget.h>
-	   #include <miniupnpc.h>
-	   #include <upnpcommands.h>
-	   #include <stdio.h>
-	   static struct UPNPUrls urls;
-	   static struct IGDdatas data;
-	   int main()
-	   {
-	   char externalIP[16]     = "";
-	   UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIP);
+IF (NOT MINIUPNPC_VERSION_PRE1_6 AND NOT MINIUPNPC_VERSION_PRE1_7 AND NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
+	set(CMAKE_REQUIRED_INCLUDES ${MINIUPNP_INCLUDE_DIR})
+	set(CMAKE_REQUIRED_LIBRARIES ${MINIUPNP_LIBRARY})
+	check_cxx_source_runs("
+	#include <miniwget.h>
+	#include <miniupnpc.h>
+	#include <upnpcommands.h>
+	#include <stdio.h>
+	static struct UPNPUrls urls;
+	static struct IGDdatas data;
+	int main()
+	{
+	char externalIP[16]     = "";
+	UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIP);
 
-	   return 0;
-	   }"
-	   MINIUPNPC_VERSION_1_5_OR_HIGHER)
-	ENDIF()
+	return 0;
+	}"
+	MINIUPNPC_VERSION_1_5_OR_HIGHER)
 
-	IF (NOT MINIUPNPC_VERSION_1_5_OR_HIGHER AND NOT MINIUPNPC_VERSION_PRE1_6 AND NOT MINIUPNPC_VERSION_PRE1_7 AND NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
-		set(CMAKE_REQUIRED_INCLUDES ${MINIUPNP_INCLUDE_DIR})
-		set(CMAKE_REQUIRED_LIBRARIES ${MINIUPNP_LIBRARY})
-		check_cxx_source_runs("
-		#include <miniwget.h>
-		#include <miniupnpc.h>
-		#include <upnpcommands.h>
-		#include <stdio.h>
-		static struct UPNPUrls urls;
-		static struct IGDdatas data;
-		int main()
-		{
-		char externalIP[16]     = "";
-		UPNP_GetExternalIPAddress(urls.controlURL, data.servicetype, externalIP);
+ENDIF()
+
+IF (NOT MINIUPNPC_VERSION_1_5_OR_HIGHER AND NOT MINIUPNPC_VERSION_PRE1_6 AND NOT MINIUPNPC_VERSION_PRE1_7 AND NOT MINIUPNPC_VERSION_1_7_OR_HIGHER)
+	set(CMAKE_REQUIRED_INCLUDES ${MINIUPNP_INCLUDE_DIR})
+	set(CMAKE_REQUIRED_LIBRARIES ${MINIUPNP_LIBRARY})
+	check_cxx_source_runs("
+	#include <miniwget.h>
+	#include <miniupnpc.h>
+	#include <upnpcommands.h>
+	#include <stdio.h>
+	static struct UPNPUrls urls;
+	static struct IGDdatas data;
+	int main()
+	{
+	char externalIP[16]     = "";
+	UPNP_GetExternalIPAddress(urls.controlURL, data.servicetype, externalIP);
 
 		return 0;
 		}"
